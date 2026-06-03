@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0q0d433" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.44.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.24.0">
+  <bpmn:process id="employee-onboarding" name="Employee Onboarding Process" isExecutable="true" camunda:historyTimeToLive="30">
+    <bpmn:startEvent id="StartEvent_1" name="Start Event">
+      <bpmn:outgoing>Flow_0pub50h</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_0pub50h" sourceRef="StartEvent_1" targetRef="Activity_134odvl" />
+    <bpmn:userTask id="Activity_134odvl" name="Enter Employee Information" camunda:assignee="hr">
+      <bpmn:incoming>Flow_0pub50h</bpmn:incoming>
+      <bpmn:outgoing>Flow_1edkdlv</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_1edkdlv" sourceRef="Activity_134odvl" targetRef="Activity_1f4kndl" />
+    <bpmn:userTask id="Activity_1f4kndl" name="Enter Address" camunda:assignee="hr">
+      <bpmn:incoming>Flow_1edkdlv</bpmn:incoming>
+      <bpmn:outgoing>Flow_03ojcwr</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_03ojcwr" sourceRef="Activity_1f4kndl" targetRef="Activity_09rk7iz" />
+    <bpmn:userTask id="Activity_09rk7iz" name="Enter Bank Details" camunda:assignee="hr">
+      <bpmn:incoming>Flow_03ojcwr</bpmn:incoming>
+      <bpmn:outgoing>Flow_1no47oz</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_1no47oz" sourceRef="Activity_09rk7iz" targetRef="Activity_0ikrqir" />
+    <bpmn:serviceTask id="Activity_0ikrqir" name="Save Employee Data" camunda:class="com.srikrutha.tms.tmsbackend.service.SaveEmployeeService">
+      <bpmn:incoming>Flow_1no47oz</bpmn:incoming>
+      <bpmn:outgoing>Flow_0fj4jxa</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="Event_0kz0blw" name="End Event">
+      <bpmn:incoming>Flow_0fj4jxa</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0fj4jxa" sourceRef="Activity_0ikrqir" targetRef="Event_0kz0blw" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="employee-onboarding">
+      <bpmndi:BPMNShape id="StartEvent_1_di" bpmnElement="StartEvent_1">
+        <dc:Bounds x="182" y="102" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="173" y="145" width="56" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_099x90u_di" bpmnElement="Activity_134odvl">
+        <dc:Bounds x="270" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1kc4c84_di" bpmnElement="Activity_1f4kndl">
+        <dc:Bounds x="430" y="80" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0euc847_di" bpmnElement="Activity_09rk7iz">
+        <dc:Bounds x="590" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0ow8q28_di" bpmnElement="Activity_0ikrqir">
+        <dc:Bounds x="750" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0kz0blw_di" bpmnElement="Event_0kz0blw">
+        <dc:Bounds x="912" y="102" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="905" y="145" width="52" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0pub50h_di" bpmnElement="Flow_0pub50h">
+        <di:waypoint x="218" y="120" />
+        <di:waypoint x="270" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1edkdlv_di" bpmnElement="Flow_1edkdlv">
+        <di:waypoint x="370" y="120" />
+        <di:waypoint x="430" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_03ojcwr_di" bpmnElement="Flow_03ojcwr">
+        <di:waypoint x="530" y="120" />
+        <di:waypoint x="590" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1no47oz_di" bpmnElement="Flow_1no47oz">
+        <di:waypoint x="690" y="120" />
+        <di:waypoint x="750" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0fj4jxa_di" bpmnElement="Flow_0fj4jxa">
+        <di:waypoint x="850" y="120" />
+        <di:waypoint x="912" y="120" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
